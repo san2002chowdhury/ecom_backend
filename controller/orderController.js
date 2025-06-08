@@ -372,7 +372,7 @@ exports.orderFailed = async (req, res, next) => {
 exports.pdfGenerate = async (req, res, next) => {
   try {
     const { currentOrder } = req.body;
-    const BASE_URL = process.env.BASE_URL || "http://localhost:3000"; // Update this
+    const BASE_URL = process.env.BASE_URL;
 
     const orderEmailPath = path.join(
       __dirname,

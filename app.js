@@ -3,7 +3,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv");
 const path = require("path");
+dotenv.config({ path: "./config.env" });
 const app = express();
 // ------------- Import Router from Routes folder -----------
 const userRouter = require("./routes/userRoutes");
@@ -22,7 +24,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "uploads")));
 app.use(
   cors({
-    origin: "https://ecom-backend-qono.onrender.com",
+    origin: process.env.BASE_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   })
