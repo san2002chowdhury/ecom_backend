@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+    <style type="text/css">
+      /* Base Styles */
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333333;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Email Container */
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Header */
+      .email-header {
+        background-color: #9acd32;
+        padding: 30px 20px;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .store-logo {
+        max-width: 150px;
+        max-height: 80px;
+        margin-bottom: 15px;
+        border-radius: 30px;
+      }
+
+      .email-header h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      /* Content */
+      .email-content {
+        padding: 30px;
+      }
+
+      .order-number {
+        background-color: #f5f7ff;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 25px;
+        text-align: center;
+        font-weight: bold;
+        color: #4a6bff;
+      }
+
+      .thank-you {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #333333;
+      }
+
+      /* Order Summary */
+      .order-summary {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+      }
+
+      .order-summary th {
+        background-color: #f5f7ff;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      .order-summary td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eaeaea;
+        vertical-align: top;
+      }
+
+      .product-row td {
+        padding: 20px 15px;
+      }
+
+      .product-image {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border-radius: 4px;
+        border: 1px solid #eaeaea;
+      }
+
+      .product-info {
+        padding-left: 15px;
+      }
+
+      .product-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .product-variant {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .product-price {
+        font-weight: 600;
+      }
+
+      .product-quantity {
+        color: #666;
+      }
+
+      .order-summary tr:last-child td {
+        border-bottom: none;
+      }
+
+      .total-row {
+        font-weight: bold;
+        background-color: #f9f9f9;
+      }
+
+      .total-row td {
+        padding: 15px;
+      }
+
+      /* Shipping Info */
+      .info-box {
+        display: flex;
+        margin-bottom: 30px;
+      }
+
+      .info-column {
+        flex: 1;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 6px;
+        margin-right: 15px;
+      }
+
+      .info-column:last-child {
+        margin-right: 0;
+      }
+
+      .info-column h3 {
+        margin-top: 0;
+        color: #9acd32;
+        font-size: 16px;
+      }
+
+      /* Footer */
+      .email-footer {
+        background-color: #f5f7ff;
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #666666;
+      }
+
+      .email-footer a {
+        color: #9acd32;
+        font-weight: bolder;
+        text-decoration: none;
+      }
+
+      /* Button */
+      .track-order-btn {
+        display: inline-block;
+        background-color: #9acd32;
+        color: white !important;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 600;
+        margin: 20px 0;
+      }
+
+      /* Responsive */
+      @media only screen and (max-width: 600px) {
+        .info-box {
+          flex-direction: column;
+        }
+
+        .info-column {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+
+        .email-header h1 {
+          font-size: 20px;
+        }
+
+        .product-image {
+          width: 60px;
+          height: 60px;
+        }
+
+        .store-logo {
+          max-width: 120px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header with Logo -->
+      <div class="email-header">
+        <div class="header-content">
+          <img class="store-logo" src="LOGO" alt="Company Logo" />
+          <h1>Thank You For Your Order!💚</h1>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="email-content">
+        <p class="thank-you">Hi {{name}},</p>
+        <p>
+          Your order has been received and is being processed. Here's what you
+          ordered:
+        </p>
+
+        <div class="order-number">
+          Order : {{order_id}}<br />
+          Date: {{order_date}}
+        </div>
+
+        <!-- Order Summary Table -->
+        <table class="order-summary">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Details</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productRowsHTML}
+            <!-- Totals -->
+            <tr class="total-row">
+              <td colspan="3">Subtotal</td>
+              <td>₹[Subtotal]</td>
+            </tr>
+            <tr>
+              <td colspan="3">Shipping</td>
+              <td>₹[Shipping]</td>
+            </tr>
+            <tr>
+              <td colspan="3">Tax</td>
+              <td>₹[Tax]</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="3">Total</td>
+              <td>₹[Total]</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Shipping and Billing Info -->
+        <div class="info-box">
+          <div class="info-column">
+            <h3>Shipping Address</h3>
+            <p>
+              {{name}}<br />
+              {{address}}<br />
+              {{city}}, {{state}} ,{{zip}}<br />
+              India
+            </p>
+          </div>
+          <div class="info-column">
+            <h3>Billing Address</h3>
+            <p>
+              {{name}}<br />
+              {{address}}<br />
+              {{city}}, {{state}} ,{{zip}}<br />
+              India
+            </p>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="info-column">
+          <h3>Payment Method</h3>
+          <p>{{payment_method}}</p>
+        </div>
+
+        <!-- Track Order Button -->
+        <div style="text-align: center">
+          <a href="http://localhost:3000/myorder" class="track-order-btn"
+            >Track Your Order</a
+          >
+        </div>
+
+        <p>
+          We'll send you a shipping confirmation email when your order is on its
+          way. If you have any questions, please reply to this email or contact
+          us at
+          <a href="chowdhurystore2025@gmail.com">chowdhurystore2025@gmail.com</a
+          >.
+        </p>
+
+        <p>Thanks for shopping with us!</p>
+        <p>The <b>CHOWDHURY STORE ptv.ltd.</b></p>
+      </div>
+
+      <!-- Footer -->
+      <div class="email-footer">
+        <p>
+          &copy; 2025 CHOWDHURY STORE ptv.ltd. All rights reserved.<br />
+          Vivekananda Nagar,Madhyamgram,Kolkata:- 700129
+        </p>
+        <p>
+          <a href="[UnsubscribeLink]">Unsubscribe</a> |
+          <a href="[PrivacyPolicyLink]">Privacy Policy</a> |
+          <a href="[TermsLink]">Terms of Service</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
