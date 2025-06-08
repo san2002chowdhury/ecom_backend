@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "uploads")));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://ecom-backend-qono.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   })
