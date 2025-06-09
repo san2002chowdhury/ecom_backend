@@ -8,7 +8,7 @@ dotenv.config({ path: "./config.env" });
 let ObjectId = require("mongodb").ObjectId;
 exports.sendPdf = async (currentOrder) => {
   try {
-    const BASE_URL = process.env.BASE_URL;
+    const BASE_URL = process.env.URL;
     const userData = await UserModel.find({
       _id: new ObjectId(currentOrder.user_id),
     });
