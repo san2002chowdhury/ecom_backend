@@ -195,8 +195,6 @@ exports.getKey = async (req, res, next) => {
 };
 exports.processPayment = async (req, res, next) => {
   try {
-    console.log("WE->1");
-
     const razorpay = new Razorpay({
       key_id: process.env.key_id,
       key_secret: process.env.key_secret,
@@ -209,8 +207,6 @@ exports.processPayment = async (req, res, next) => {
       order_status,
       coupon_id,
     } = req.body;
-    console.log("WE->2");
-
     const formattedDate = moment().format("D MMMM, YYYY [at] h:mm A");
     const order_id = `#${Math.floor(Math.random() * 0x1000000)
       .toString(16)

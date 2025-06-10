@@ -60,7 +60,11 @@ exports.couponUse = async (req, res, next) => {
 
         console.log("IS New", isNew);
 
-        if (JSON.stringify(isNew) === "[]" && use === "One") {
+        if (
+          (JSON.stringify(isNew) === "[]" ||
+            JSON.stringify(isNew) === "null") &&
+          use === "One"
+        ) {
           if (mode === "%" && total_price >= minCartValue) {
             total_price = total_price - (total_price * amount) / 100;
 
