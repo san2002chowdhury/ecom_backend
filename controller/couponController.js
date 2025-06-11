@@ -49,16 +49,12 @@ exports.couponUse = async (req, res, next) => {
     } else {
       const [{ code, status, amount, use, _id, mode, minCartValue }] = data;
       if (status === "active") {
-        console.log("id", _id);
-
         const isNew = await OrderModel.findOne({
           $and: [
             { user_id: new ObjectId(user_id) },
             { coupond_id: new ObjectId(_id) },
           ],
         });
-
-        console.log("IS New", isNew);
 
         if (
           (JSON.stringify(isNew) === "[]" ||
@@ -129,8 +125,6 @@ exports.couponUse = async (req, res, next) => {
               minCartValue: minCartValue,
             });
           } else {
-            console.log("We Here-->Some more items add-->");
-
             return res.status(200).json({
               status: false,
               message: `Add ₹${
@@ -144,8 +138,6 @@ exports.couponUse = async (req, res, next) => {
             });
           }
         } else {
-          console.log("We Here-->Cant Avail-->");
-
           return res.status(200).json({
             status: false,
             message: `You can't avail this '${code}' coupon code!`,

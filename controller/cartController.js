@@ -117,8 +117,6 @@ exports.getCartData = async (req, res, next) => {
       (total, item) => total + item.total_price,
       0
     );
-    console.log("TOTAL-->CARTVALUE-->", cartValue);
-
     if (cartData) {
       return res.status(200).json({
         status: "success",

@@ -85,7 +85,6 @@ exports.placeOrder = async (req, res, next) => {
     const allOrders = await OrderModel.find({
       user_id: new ObjectId(user_id),
     });
-    console.log("Coupon Id->", coupon_id);
 
     let code = null;
 
@@ -230,7 +229,6 @@ exports.processPayment = async (req, res, next) => {
       order_status: order_status,
       order_id: order_id,
     });
-    console.log("WE->3");
 
     const { product } = OrderData;
     const items_ordered = product.reduce(
@@ -240,7 +238,7 @@ exports.processPayment = async (req, res, next) => {
     const allOrders = await OrderModel.find({
       user_id: new ObjectId(user_id),
     });
-    console.log("WE->4");
+
     let code = null;
 
     if (coupon_id && ObjectId.isValid(coupon_id)) {
